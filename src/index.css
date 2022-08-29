@@ -1,0 +1,41 @@
+body {
+  display: flex;
+  flex-direction: column;
+  color: black;
+}
+
+#nav-bar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f0eaea;
+  flex-direction: row;
+}
+
+#logo {
+  padding-right: 3rem;
+  background-image: url(./images/tvm_api.png);
+  background-repeat: no-repeat;
+  height: 50px;
+  width: 110px;
+}
+
+.nav-lists {
+  display: flex;
+  gap: 80px;
+}
+
+.nav-item {
+  color: black;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.footer {
+  padding: 2rem;
+  background-color: #ffffff;
+}
