@@ -1,41 +1,71 @@
 body {
   display: flex;
   flex-direction: column;
-  color: black;
 }
 
 #nav-bar {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  background-color: #f0eaea;
-  flex-direction: row;
+  background-color:black;
+  position: fix;
+  
+ 
 }
 
 #logo {
   padding-right: 3rem;
-  background-image: url(./images/tvm_api.png);
   background-repeat: no-repeat;
   height: 50px;
   width: 110px;
 }
 
+.search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+.search input {
+  border-radius: 2rem 0 0 2rem;
+  width:400px;
+  height: 30px;
+}
+
+input::placeholder {
+  text-align:center;
+}
+
+.search-btn .fa {
+  padding: 15px;
+  background-color: aqua;
+}
+
+ 
 .nav-lists {
   display: flex;
   gap: 80px;
+  list-style: none;
+}
+
+.nav-lists:last-child {
+  margin-right: 20px;
+
 }
 
 .nav-item {
-  color: black;
+  color: white;
   cursor: pointer;
 }
 
 .nav-item:hover {
   text-decoration: underline;
   font-weight: bold;
+ 
 }
 
 .footer {
   padding: 2rem;
   background-color: #ffffff;
+  border:1px solid black;
 }
