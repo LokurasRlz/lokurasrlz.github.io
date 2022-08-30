@@ -7,8 +7,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color:black;
-  position: fix;
+  background-color: black;
+  position: fixed;
 }
 
 #logo {
@@ -22,16 +22,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 }
+
 .search input {
   border-radius: 2rem 0 0 2rem;
-  width:400px;
+  width: 400px;
   height: 30px;
 }
 
 input::placeholder {
-  text-align:center;
+  text-align: center;
 }
 
 .search-btn .fa {
@@ -39,7 +39,6 @@ input::placeholder {
   background-color: aqua;
 }
 
- 
 .nav-lists {
   display: flex;
   gap: 80px;
@@ -48,7 +47,6 @@ input::placeholder {
 
 .nav-lists:last-child {
   margin-right: 20px;
-
 }
 
 .nav-item {
@@ -59,17 +57,14 @@ input::placeholder {
 .nav-item:hover {
   text-decoration: underline;
   font-weight: bold;
- 
 }
 
 .footer {
   padding: 2rem;
-  background-color:#000;
+  background-color: #000;
   color: aliceblue;
-  border:1px solid black;
+  border: 1px solid black;
   font-weight: 800;
   text-align: center;
   font-size: 40px;
-
-
 }

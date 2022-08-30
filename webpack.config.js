@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-mode: 'production',  
+  mode: 'production',
   entry: './src/index.js',
   devServer: {
     static: './dist',
@@ -11,7 +11,7 @@ mode: 'production',
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    assetModuleFilename: 'src/assets/images/[name].[ext]'
+    assetModuleFilename: 'src/assets/images/[name].[ext]',
   },
   optimization: {
     runtimeChunk: 'single',
@@ -30,8 +30,8 @@ mode: 'production',
       },
       {
         test: /\.(png|jpg|gif|svg|eot|ttf|woff)$/,
-        type: 'asset/resource'
-     },
+        type: 'asset/resource',
+      },
     ],
   },
 };
