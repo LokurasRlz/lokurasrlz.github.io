@@ -16,6 +16,9 @@ module.exports = {
   optimization: {
     runtimeChunk: 'single',
   },
+
+  devtool: 'source-map',
+  
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Output Management',

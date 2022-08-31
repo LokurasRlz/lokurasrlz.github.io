@@ -1,24 +1,60 @@
+import { updateLikes, setLike } from './likes.js';
+
 const movies = document.querySelector('.main');
 
 const displayMovies = [];
 
-const popShow = (arr) => {
+const popShow = async (movieList, appId) => {
+  //const movies = document.querySelector(`#${section}-section`);
   movies.innerHTML = '';
-  arr.forEach((movie) => {
-    const eachMovie = `<div class=movie id=${movie.id}>
-           <h1 class="movie-title">${movie.name}</h1>
-           <img class="movie-image" src=${movie.image.medium}>
-           <div class= "buttons">
-             <button class="comment btn-${movie.id}">Comment</button>
-             <button class="reserv btn-${movie.id}">Reservations</button>
-             <i class="fas fa-heart" data-id="${movie.id}"></i>
-          </div>
-        </div>`;
-    movies.insertAdjacentHTML('beforeend', eachMovie);
+  movieList.forEach((movie) => {
+    const eachMovie = document.createElement('div');
+    eachMovie.className = 'movie';
+    eachMovie.id = `${movie.id}`;
+    const img = document.createElement('img');
+    img.className = 'movie-image';
+    img.src = movie.image.medium;
+    const details = document.createElement('h1');
+    details.className = 'movie-title';
+    details.innerHTML = `${movie.name}`;
+    const buttons = document.createElement('div');
+    buttons.className = 'buttons';
+    const commentButton = document.createElement('button');
+    commentButton.type = 'button';
+    commentButton.innerHTML = 'Comments';
+    commentButton.className = 'comment';
+    commentButton.addEventListener('click', () => {
+      displayMovieComments(item, appId);
+    });
+    const reserveButton = document.createElement('button');
+    reserveButton.type = 'button';
+    reserveButton.innerHTML = 'Reservations';
+    reserveButton.className = 'reserv';
+    reserveButton.addEventListener('click', () => {
+      displayMovieReservations(item, appId);
+    });
+    //eachMovie.append(img, details, buttons, commentButton, reserveButton);
+    const likes = document.createElement('div');
+    likes.className = 'likes';
+    const span = document.createElement('span');
+    const like = document.createElement('i');
+    like.className = 'fas fa-heart';
+    likes.append(like, span);
+    details.append(likes);
+    //eachMovie.append(img, details, commentButton);
+    //*movie.appendChild(eachMovie);
+    like.addEventListener('click', () => {
+      setLike(`${movie.id}`, appId);
+      const number = like.parentNode.lastChild.textContent.split(' ');
+      like.parentNode.lastChild.innerHTML = `${Number(number[0]) + 1} likes`;
+    });
+    eachMovie.append(img, details, buttons, likes, commentButton, reserveButton);
+    movies.append(eachMovie);
   });
+  updateLikes(appId);
 };
 
-export default function getMovies() {
+export default async function getMovies() {
   fetch('https://api.tvmaze.com/shows')
     .then((res) => res.json())
     .then((data) => {
