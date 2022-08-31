@@ -1,16 +1,4 @@
-import { getLike, setLike } from './likes.js';
-
-export default async function getMovies() {
-  fetch('https://api.tvmaze.com/shows')
-    .then((res) => res.json())
-    .then((data) => {
-      for (let i = 0; i < 20; i += 1) {
-        displayMovies.push(data[i]);
-      }
-      console.log(displayMovies);
-      popShow(displayMovies);
-    });
-}
+import { getLike, addLike } from './likes.js';
 
 const movies = document.querySelector('.main');
 const displayMovies = [];
@@ -20,7 +8,7 @@ const popShow = async (movieList, appId) => {
   movieList.forEach((item) => {
     const eachMovie = document.createElement('div');
     eachMovie.className = 'movie';
-    eachMovie.id = `main-${item.id}`;
+    eachMovie.id = `${item.id}`;
     const img = document.createElement('img');
     img.className = 'movie-image';
     img.src = item.image.medium;
@@ -38,16 +26,23 @@ const popShow = async (movieList, appId) => {
     reserveButton.innerHTML = 'Reservations';
     reserveButton.className = 'reserv';
     const likes = document.createElement('div');
-    likes.className = 'likes';
+    likes.classList.add('likes');
+    likes.id = `${item.id}`;
     const span = document.createElement('span');
     const like = document.createElement('i');
     like.className = 'fas fa-heart';
     likes.append(like, span);
     details.append(likes);
     like.addEventListener('click', () => {
-      setLike(`main-${item.id}`, appId);
+      addLike(`${item.id}`, appId);
       const number = like.parentNode.lastChild.textContent.split(' ');
       like.parentNode.lastChild.innerHTML = `${Number(number[0]) + 1} likes`;
+    });
+    const likeSum = document.querySelectorAll('span');
+    getLike().then((id) => {
+      for (let i = 0; i < id.length; i += 1) {
+        likeSum[i].textContent = `${id[i].likes} likes`;
+      }
     });
     eachMovie.append(img, details, buttons, likes, commentButton, reserveButton);
     movies.append(eachMovie);
@@ -55,3 +50,13 @@ const popShow = async (movieList, appId) => {
   getLike(appId);
 };
 
+export default async function getMovies() {
+  fetch('https://api.tvmaze.com/shows')
+    .then((res) => res.json())
+    .then((data) => {
+      for (let i = 0; i < 239; i += 1) {
+        displayMovies.push(data[i]);
+      }
+      popShow(displayMovies);
+    });
+}

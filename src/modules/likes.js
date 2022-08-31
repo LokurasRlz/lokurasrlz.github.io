@@ -2,29 +2,39 @@ const baseURL = 'https://us-central1-involvement-api.cloudfunctions.net/capstone
 
 const appId = 'r2kBCF0osBLlU6ownV4b';
 
-const setLike = async (id) => {
-  const connect = await fetch(`${baseURL}${appId}/likes/`, {
-    method: 'POST',
-    body: JSON.stringify({ item_id: id }),
-    headers: { 'Content-type': 'application/JSON' },
-  });
-  const response = await connect.text();
+const fetchData = (url, CostumSettings = {}) => {
+  const response = fetch(url, CostumSettings)
+    .then((res) => res.json());
   return response;
+};
+
+const addLike = async (id) => {
+  const settings = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({ item_id: id }),
+  };
+  const res = await fetchData(`${baseURL}${appId}/likes/`, settings)
+    .catch((err) => err);
+  return res;
 };
 
 const getLike = async () => {
-  const connect = await fetch(`${baseURL}${appId}/likes/`);
-  const response = await connect.json();
-  return response;
+  const response = await fetch(`${baseURL}${appId}/likes/`);
+  const data = await response.json();
+  return data;
 };
 
-//const updateLikes = () => {
- // getLike(appId).then((response) => {
- //   response.forEach((element) => {
- //     const container = document.querySelector(`#${element.item_id}`);
- //     container.children[1].children[1].innerHTML = `${element.likes} likes`;
-//    });
-//  });
-//};
+// const updateLikes = () => {
+// getLike().then((response) => {
+//   response.forEach((element) => {
+//     const container = document.querySelector(`#${element.item_id}`);
+//    container.children[1].children[1].children[1].innerHTML = `${element.likes} likes`;
+//   });
+// });
+// };
 
-export { getLike, setLike };
+export { getLike, addLike };
