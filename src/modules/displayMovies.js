@@ -5,7 +5,6 @@ const movies = document.querySelector('.main');
 const displayMovies = [];
 
 const popShow = async (movieList, appId) => {
-  //const movies = document.querySelector(`#${section}-section`);
   movies.innerHTML = '';
   movieList.forEach((movie) => {
     const eachMovie = document.createElement('div');
