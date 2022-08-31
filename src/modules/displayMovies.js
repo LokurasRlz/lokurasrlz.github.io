@@ -23,17 +23,10 @@ const popShow = async (movieList, appId) => {
     commentButton.type = 'button';
     commentButton.innerHTML = 'Comments';
     commentButton.className = 'comment';
-    commentButton.addEventListener('click', () => {
-      displayMovieComments(item, appId);
-    });
     const reserveButton = document.createElement('button');
     reserveButton.type = 'button';
     reserveButton.innerHTML = 'Reservations';
     reserveButton.className = 'reserv';
-    reserveButton.addEventListener('click', () => {
-      displayMovieReservations(item, appId);
-    });
-    //eachMovie.append(img, details, buttons, commentButton, reserveButton);
     const likes = document.createElement('div');
     likes.className = 'likes';
     const span = document.createElement('span');
@@ -41,8 +34,6 @@ const popShow = async (movieList, appId) => {
     like.className = 'fas fa-heart';
     likes.append(like, span);
     details.append(likes);
-    //eachMovie.append(img, details, commentButton);
-    //*movie.appendChild(eachMovie);
     like.addEventListener('click', () => {
       setLike(`${movie.id}`, appId);
       const number = like.parentNode.lastChild.textContent.split(' ');
