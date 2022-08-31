@@ -1,21 +1,32 @@
-import { updateLikes, setLike } from './likes.js';
+import { getLike, setLike } from './likes.js';
+
+export default async function getMovies() {
+  fetch('https://api.tvmaze.com/shows')
+    .then((res) => res.json())
+    .then((data) => {
+      for (let i = 0; i < 20; i += 1) {
+        displayMovies.push(data[i]);
+      }
+      console.log(displayMovies);
+      popShow(displayMovies);
+    });
+}
 
 const movies = document.querySelector('.main');
-
 const displayMovies = [];
 
 const popShow = async (movieList, appId) => {
   movies.innerHTML = '';
-  movieList.forEach((movie) => {
+  movieList.forEach((item) => {
     const eachMovie = document.createElement('div');
     eachMovie.className = 'movie';
-    eachMovie.id = `${movie.id}`;
+    eachMovie.id = `main-${item.id}`;
     const img = document.createElement('img');
     img.className = 'movie-image';
-    img.src = movie.image.medium;
+    img.src = item.image.medium;
     const details = document.createElement('h1');
     details.className = 'movie-title';
-    details.innerHTML = `${movie.name}`;
+    details.innerHTML = `${item.name}`;
     const buttons = document.createElement('div');
     buttons.className = 'buttons';
     const commentButton = document.createElement('button');
@@ -34,23 +45,13 @@ const popShow = async (movieList, appId) => {
     likes.append(like, span);
     details.append(likes);
     like.addEventListener('click', () => {
-      setLike(`${movie.id}`, appId);
+      setLike(`main-${item.id}`, appId);
       const number = like.parentNode.lastChild.textContent.split(' ');
       like.parentNode.lastChild.innerHTML = `${Number(number[0]) + 1} likes`;
     });
     eachMovie.append(img, details, buttons, likes, commentButton, reserveButton);
     movies.append(eachMovie);
   });
-  updateLikes(appId);
+  getLike(appId);
 };
 
-export default async function getMovies() {
-  fetch('https://api.tvmaze.com/shows')
-    .then((res) => res.json())
-    .then((data) => {
-      for (let i = 0; i < 249; i += 1) {
-        displayMovies.push(data[i]);
-      }
-      popShow(displayMovies);
-    });
-}
