@@ -1,5 +1,6 @@
 import { getLike, addLike } from './likes.js';
 import movieCounter from './itemCounter.js';
+import { displayMovieComments } from './commenttest.js';
 
 const movies = document.querySelector('.main');
 const displayMovies = [];
@@ -22,6 +23,9 @@ const popShow = async (movieList, appId) => {
     commentButton.type = 'button';
     commentButton.innerHTML = 'Comments';
     commentButton.className = 'comment';
+    commentButton.addEventListener('click', () => {
+      displayMovieComments(item, appId);
+    });
     const reserveButton = document.createElement('button');
     reserveButton.type = 'button';
     reserveButton.innerHTML = 'Reservations';
@@ -65,7 +69,7 @@ export default async function getMovies() {
   fetch('https://api.tvmaze.com/shows')
     .then((res) => res.json())
     .then((data) => {
-      for (let i = 0; i < 20; i += 1) {
+      for (let i = 0; i < 239; i += 1) {
         displayMovies.push(data[i]);
       }
       popShow(displayMovies);
