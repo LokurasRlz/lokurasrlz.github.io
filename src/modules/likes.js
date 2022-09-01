@@ -28,13 +28,4 @@ const getLike = async () => {
   return data;
 };
 
-// const updateLikes = () => {
-// getLike().then((response) => {
-//   response.forEach((element) => {
-//     const container = document.querySelector(`#${element.item_id}`);
-//    container.children[1].children[1].children[1].innerHTML = `${element.likes} likes`;
-//   });
-// });
-// };
-
 export { getLike, addLike };
