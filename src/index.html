@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/f55885b517.js" crossorigin="anonymous">
+  </script>
+  <title>Document</title>
+</head>
+
+<body>
+  <header>
+    <nav id="nav-bar">
+      <div class="logo">
+        <a href="index.html"><img class="logo" src="https://static.tvmaze.com/images/tvm-header-logo.png" alt="Logo">
+        </a>
+      </div>
+      <div class="search">
+        <input type="text" placeholder="search">
+        <button class="search-btn" type="submit"><i class="fa fa-search fa-lg" aria-hidden="true"></i>
+        </button>
+
+      </div>
+
+
+      <div>
+        <ul class="nav-lists">
+          <li class="nav-item" Id="movies">Movies</li>
+          <li class="nav-item" Id="series">Series</li>
+          <li class="nav-item" Id="anime">Anime</li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main class="main">
+
+  </main>
+
+  <div class="popup">
+    <div class="popup_section">
+      <div class="popup_movies">
+        <div class="movie__details"></div>
+        <div class="movie__comments commentk"></div>
+        <div class="movie__add-comment commentk">
+          <h3>Add a comment</h3>
+          <form action="#" id="form__comment">
+            <input type="text" name="inp__username" id="inp__username" class="input__field" placeholder="Your name"
+              required />
+            <br>
+            <textarea name="inp__comments" id="inp__comments" class="input__field" cols="30" rows="5"
+              placeholder="Your Comments" required></textarea>
+            <input type="submit" id="btn__submit" class="btn" value="COMMENT" />
+            <span class="form__message" id="form__message-com"></span>
+          </form>
+        </div>
+      </div>
+      <div class="popbtn">
+        <button type="button" id="closepop" class="closepop">X</button>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <footer class="footer">Created by Microverse under CC license ©</footer>
+</body>
+
+</html>
