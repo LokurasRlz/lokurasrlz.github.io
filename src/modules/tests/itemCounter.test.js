@@ -1,4 +1,4 @@
-import movieCounter from './itemCounter.js';
+import movieCounter from '../itemCounter.js';
 
 test('items counter check ', () => {
   const arr = [
