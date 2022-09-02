@@ -1,13 +1,12 @@
 import { getLike, addLike } from './likes.js';
 import movieCounter from './itemCounter.js';
-import displayMovieComments from './commenttest.js';
+import displayMovieComments from './comment.js';
 
 
 const movies = document.querySelector('.main');
 const displayMovies = [];
 const popShow = async (movieList, appId) => {
   const APIlikes = await getLike();
-  // console.log(APIlikes);
   movies.innerHTML = '';
   movieList.forEach((item) => {
     const eachMovie = document.createElement('div');
@@ -48,26 +47,14 @@ const popShow = async (movieList, appId) => {
     like.addEventListener(
       'click',
       async (e) => {
-        // console.log(e.target.id);
         const number = e.target.parentNode.lastChild.textContent.split(' ');
         e.target.parentNode.lastChild.innerHTML = `${
           parseInt(number[0], 10) + 1
         } likes`;
-        // console.log(item.id);
         await addLike(`${item.id}`);
       },
       { once: true }
     );
-    //window.onload = likeSum;
-    // const likeSum = document.querySelectorAll('.like2');
-    // getLike().then((id) => {
-    //   for (let i = 0; i < id.length; i += 1) {
-    //     if (likeSum[i]) {
-    //       // console.log(likeSum);
-    //       likeSum[i].textContent = `${id[i].likes} likes`;
-    //     }
-    //   }
-    // });
     const totalMovies = movieCounter('https://api.tvmaze.com/shows');
     totalMovies.then((total) => {
       const movies = document.getElementById('movies');
@@ -82,25 +69,11 @@ const popShow = async (movieList, appId) => {
       reserveButton
     );
     movies.append(eachMovie);
-    //const likeSum = document.querySelectorAll('span');
-    //getLike().then((response) => {
-    //  response.forEach((id) => {
-    //    if (likeSum[i]) {
-    //      likeSum[i].textContent = `${id[i].likes} likes`;
-    //   }
-    //   });
-    // });
   });
-  //const updateLikes = (appId) => {
-  // getLike(appId).then((response) => {
-  //   response.forEach((id) => {
-  //    const container = document.querySelector('span');
-  //    container.innerHTML = `${id.likes} likes`;
-  //  });
-  // });
-  // };
   getLike(appId);
 };
+
+
 export default async function getMovies() {
   fetch('https://api.tvmaze.com/shows')
     .then((res) => res.json())
