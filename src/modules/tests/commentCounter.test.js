@@ -3,7 +3,7 @@
  */
 /* eslint-disable*/
 
- import { counterComment } from "./mocks/commentCounter";
+ import counterComment from "./mocks/commentCounter";
 
  test('comment should be = 6', () => {
    const div = document.createElement('p');
