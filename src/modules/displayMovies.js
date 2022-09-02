@@ -2,7 +2,6 @@ import { getLike, addLike } from './likes.js';
 import movieCounter from './itemCounter.js';
 import displayMovieComments from './comment.js';
 
-
 const movies = document.querySelector('.main');
 const displayMovies = [];
 const popShow = async (movieList, appId) => {
@@ -35,10 +34,9 @@ const popShow = async (movieList, appId) => {
     likes.classList.add('likes');
     likes.id = `${item.id}`;
     const span = document.createElement('span');
-    span.classList.add(`like2`);
-    const apiLike =
-      APIlikes.filter((like) => like.item_id === item.id.toString())[0]
-        ?.likes || 0;
+    span.classList.add('like2');
+    const apiLike = APIlikes.filter((like) => like.item_id === item.id.toString())[0]
+      ?.likes || 0;
     span.innerText = `${apiLike} likes`;
     const like = document.createElement('i');
     like.className = 'fas fa-heart';
@@ -53,7 +51,7 @@ const popShow = async (movieList, appId) => {
         } likes`;
         await addLike(`${item.id}`);
       },
-      { once: true }
+      { once: true },
     );
     const totalMovies = movieCounter('https://api.tvmaze.com/shows');
     totalMovies.then((total) => {
@@ -66,13 +64,12 @@ const popShow = async (movieList, appId) => {
       buttons,
       likes,
       commentButton,
-      reserveButton
+      reserveButton,
     );
     movies.append(eachMovie);
   });
   getLike(appId);
 };
-
 
 export default async function getMovies() {
   fetch('https://api.tvmaze.com/shows')

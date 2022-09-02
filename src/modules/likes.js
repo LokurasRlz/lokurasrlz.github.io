@@ -11,16 +11,10 @@ const addLike = async (id) => {
   return connect;
 };
 
-const getLike = async () => { 
+const getLike = async () => {
   const connect = await fetch(`${baseURL}${appId}/likes/`);
-  try { 
-    const response = await connect.json();
+  const response = await connect.json();
   return response;
-  } catch  {
-    return ; 
-  }
-  
 };
-
 
 export { getLike, addLike };
