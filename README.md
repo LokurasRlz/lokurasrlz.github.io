@@ -6,10 +6,10 @@ This project is a Web application based on the movie API  built with ES6, HTML a
 
 ## Live Demo
 
-[click to see project]()
+[click to see project](https://lokurasrlz.github.io/dist/)
 
 ## Presenration video link
-[video]()
+[video](https://drive.google.com/file/d/138NjD0ldVRP4sgJVSCC6KdecXIuas1Xc/view?usp=sharing)
 
 ## Built With
 
