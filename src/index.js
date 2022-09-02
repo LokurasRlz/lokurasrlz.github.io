@@ -1,4 +1,4 @@
 import './index.css';
-import getMovies from './modules/displayMovies';
+import getMovies from './modules/displayMovies.js';
 
 getMovies();
