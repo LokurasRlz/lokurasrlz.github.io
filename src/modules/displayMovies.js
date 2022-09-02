@@ -1,4 +1,5 @@
 import { getLike, addLike } from './likes.js';
+import movieCounter from './itemCounter.js';
 
 const movies = document.querySelector('.main');
 const displayMovies = [];
@@ -41,9 +42,19 @@ const popShow = async (movieList, appId) => {
     const likeSum = document.querySelectorAll('span');
     getLike().then((id) => {
       for (let i = 0; i < id.length; i += 1) {
+        if (id[i].likes == undefined) {
+          return;
+        } 
         likeSum[i].textContent = `${id[i].likes} likes`;
-      }
+      } 
     });
+    const totalMovies = movieCounter('https://api.tvmaze.com/shows');
+    totalMovies.then(
+      (total) => {
+        const movies = document.getElementById('movies');
+        movies.innerHTML = `Movies ${total}`;
+      },
+    );
     eachMovie.append(img, details, buttons, likes, commentButton, reserveButton);
     movies.append(eachMovie);
   });
@@ -54,7 +65,7 @@ export default async function getMovies() {
   fetch('https://api.tvmaze.com/shows')
     .then((res) => res.json())
     .then((data) => {
-      for (let i = 0; i < 239; i += 1) {
+      for (let i = 0; i < 20; i += 1) {
         displayMovies.push(data[i]);
       }
       popShow(displayMovies);
