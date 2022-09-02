@@ -75,7 +75,7 @@ export default async function getMovies() {
   fetch('https://api.tvmaze.com/shows')
     .then((res) => res.json())
     .then((data) => {
-      for (let i = 0; i < 239; i += 1) {
+      for (let i = 0; i < 240; i += 1) {
         displayMovies.push(data[i]);
       }
       popShow(displayMovies);
