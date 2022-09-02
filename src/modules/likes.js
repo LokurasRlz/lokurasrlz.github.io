@@ -14,15 +14,30 @@ const addLike = async (id) => {
     body: JSON.stringify({ item_id: id }),
     headers: { 'Content-type': 'application/JSON' },
   });
-  const response = await connect.text();
-  return response;
+  //const response = await connect.text();
+  //return response;
+  return connect;
 };
 
-const getLike = async () => {
+const getLike = async () => { 
   const connect = await fetch(`${baseURL}${appId}/likes/`);
-  const response = await connect.json();
+  try { 
+    const response = await connect.json();
   return response;
+  } catch  {
+    return ; 
+  }
+  
 };
+
+//const updateLikes = () => {
+  //getLike(appId).then((response) => {
+ //   response.forEach((element) => {
+ //     const container = document.querySelector(`#${element.item_id}`);
+  //    container.getElementsByClassName('.like2')[0].innerHTML = `${element.likes} likes`;
+  //  });
+ // });
+//};
 
 //const getLike = async () => {
  // const response = await fetch(`${baseURL}${appId}/likes/`);
