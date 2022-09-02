@@ -1,11 +1,12 @@
 import { getLike, addLike } from './likes.js';
 import movieCounter from './itemCounter.js';
-import displayMovieComments from './commenttest.js';
+import displayMovieComments from './comment.js';
+
 
 const movies = document.querySelector('.main');
 const displayMovies = [];
-
 const popShow = async (movieList, appId) => {
+  const APIlikes = await getLike();
   movies.innerHTML = '';
   movieList.forEach((item) => {
     const eachMovie = document.createElement('div');
@@ -34,36 +35,44 @@ const popShow = async (movieList, appId) => {
     likes.classList.add('likes');
     likes.id = `${item.id}`;
     const span = document.createElement('span');
+    span.classList.add(`like2`);
+    const apiLike =
+      APIlikes.filter((like) => like.item_id === item.id.toString())[0]
+        ?.likes || 0;
+    span.innerText = `${apiLike} likes`;
     const like = document.createElement('i');
     like.className = 'fas fa-heart';
     likes.append(like, span);
     details.append(likes);
-    like.addEventListener('click', () => {
-      addLike(`${item.id}`, appId);
-      const number = like.parentNode.lastChild.textContent.split(' ');
-      like.parentNode.lastChild.innerHTML = `${Number(number[0]) + 1} likes`;
-    });
-    const likeSum = document.querySelectorAll('span');
-    getLike().then((id) => {
-      for (let i = 0; i < id.length; i += 1) {
-        if (id[i].likes === undefined) {
-          return;
-        }
-        likeSum[i].textContent = `${id[i].likes} likes`;
-      }
-    });
-    const totalMovies = movieCounter('https://api.tvmaze.com/shows');
-    totalMovies.then(
-      (total) => {
-        const movies = document.getElementById('movies');
-        movies.innerHTML = `Movies ${total}`;
+    like.addEventListener(
+      'click',
+      async (e) => {
+        const number = e.target.parentNode.lastChild.textContent.split(' ');
+        e.target.parentNode.lastChild.innerHTML = `${
+          parseInt(number[0], 10) + 1
+        } likes`;
+        await addLike(`${item.id}`);
       },
+      { once: true }
     );
-    eachMovie.append(img, details, buttons, likes, commentButton, reserveButton);
+    const totalMovies = movieCounter('https://api.tvmaze.com/shows');
+    totalMovies.then((total) => {
+      const movies = document.getElementById('movies');
+      movies.innerHTML = `Movies ${total}`;
+    });
+    eachMovie.append(
+      img,
+      details,
+      buttons,
+      likes,
+      commentButton,
+      reserveButton
+    );
     movies.append(eachMovie);
   });
   getLike(appId);
 };
+
 
 export default async function getMovies() {
   fetch('https://api.tvmaze.com/shows')
