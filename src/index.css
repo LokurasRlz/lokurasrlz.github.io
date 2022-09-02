@@ -9,6 +9,7 @@ body {
   align-items: center;
   background-color: black;
   position: fixed;
+  width: 100%;
 }
 
 #logo {
@@ -67,4 +68,34 @@ input::placeholder {
   font-weight: 800;
   text-align: center;
   font-size: 40px;
+}
+
+.main {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-top: 5%;
+}
+
+.movie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #000;
+  padding-bottom: 1rem;
+}
+
+.movie-title {
+  font-family: "Roboto", sans-serif;
+}
+
+.movie-image {
+  width: 200px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  width: 60%;
 }
