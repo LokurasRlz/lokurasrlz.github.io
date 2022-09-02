@@ -121,7 +121,6 @@ const validFormComment = (name, comment) => {
   return true;
 };
 
-
 const sendComment = (appID) => {
   const name = document.querySelector('#inp__username');
   const comment = document.querySelector('#inp__comments');
@@ -145,11 +144,9 @@ const sendComment = (appID) => {
   }
 };
 
-
 commentForm.addEventListener('submit', (e) => {
   e.preventDefault();
   sendComment(newID);
 });
 
-
-export { displayMovieComments };
+export default displayMovieComments;

@@ -34,7 +34,7 @@ const countComments = (arr) => {
 };
 
 export {
-    getComments,
-    addComment,
-    countComments,
-  };
+  getComments,
+  addComment,
+  countComments,
+};

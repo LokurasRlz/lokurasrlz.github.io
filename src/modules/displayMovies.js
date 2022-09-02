@@ -46,11 +46,11 @@ const popShow = async (movieList, appId) => {
     const likeSum = document.querySelectorAll('span');
     getLike().then((id) => {
       for (let i = 0; i < id.length; i += 1) {
-        if (id[i].likes == undefined) {
+        if (id[i].likes === undefined) {
           return;
-        } 
+        }
         likeSum[i].textContent = `${id[i].likes} likes`;
-      } 
+      }
     });
     const totalMovies = movieCounter('https://api.tvmaze.com/shows');
     totalMovies.then(
