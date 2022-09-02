@@ -1,14 +1,24 @@
-import getMovies from '../displayMovies.js';
-import { TestData } from './testData.js';
+/**
+ * @jest-environment jsdom
+ */
+/* eslint-disable*/
 
-describe('Number of movies test', () => {
-  test('Number of movies', () => {
-    expect(getMovies(TestData.list1)).toBe(8);
-  });
-  test('Number of movies', () => {
-    expect(getMovies(TestData.list2)).toBe(4);
-  });
-  test('Number of movies', () => {
-    expect(getMovies(TestData.list3)).toBe(2);
-  });
-});
+ import { counterComment } from "./mocks/commentCounter";
+
+ test('comment should be = 6', () => {
+   const div = document.createElement('p');
+   div.innerHTML = `
+   <p class="comments"></p>
+   <p class="comments"></p>
+   <p class="comments"></p>
+   <p class="comments"></p>
+   <p class="comments"></p>
+   <p class="comments"></p>
+   `;
+ 
+   document.body.appendChild(div);
+ 
+   const n = counterComment();
+ 
+   expect(n).toEqual(6);
+ });
