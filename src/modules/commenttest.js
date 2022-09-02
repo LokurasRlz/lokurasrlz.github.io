@@ -18,8 +18,8 @@ const arrIntoString = (arr) => {
 const buildMovieDescription = (data) => {
   const movieDetails = document.querySelector('.movie__details');
   movieDetails.setAttribute('data-movieid', data.id);
-  movieDetails.innerHTML = `<img src="${data.image.medium}" alt="${data.name} movie image">
-        <h2>${data.name}</h2>
+  movieDetails.innerHTML = `<img src="${data.image.medium}" alt="${data.name} movie image" class="popup-img">
+        <h2 class ="popup-title">${data.name}</h2>
         <ul class="movie__more">
           <li>
             <span class="item-category">Genre:</span>
