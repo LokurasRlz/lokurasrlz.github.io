@@ -1,6 +1,8 @@
 import { getLike, addLike } from './likes.js';
 import movieCounter from './itemCounter.js';
 import displayMovieComments from './commenttest.js';
+
+
 const movies = document.querySelector('.main');
 const displayMovies = [];
 const popShow = async (movieList, appId) => {
@@ -103,7 +105,7 @@ export default async function getMovies() {
   fetch('https://api.tvmaze.com/shows')
     .then((res) => res.json())
     .then((data) => {
-      for (let i = 0; i < 10; i += 1) {
+      for (let i = 0; i < 239; i += 1) {
         displayMovies.push(data[i]);
       }
       popShow(displayMovies);
