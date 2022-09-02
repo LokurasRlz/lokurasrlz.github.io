@@ -1,4 +1,9 @@
-import movieCounter from '../itemCounter.js';
+/**
+ * @jest-environment jsdom
+ */
+/* eslint-disable*/
+
+import { movieCounter } from "../itemCounter";
 
 test('items counter check ', () => {
   const arr = [
