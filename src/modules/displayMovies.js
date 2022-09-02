@@ -1,6 +1,6 @@
 import { getLike, addLike } from './likes.js';
 import movieCounter from './itemCounter.js';
-import { displayMovieComments } from './commenttest.js';
+import displayMovieComments from './commenttest.js';
 
 const movies = document.querySelector('.main');
 const displayMovies = [];
