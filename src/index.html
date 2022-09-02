@@ -37,6 +37,31 @@
   <main class="main">
 
   </main>
+
+  <div class="popup">
+    <div class="popup_section">
+      <div class="popup_movies">
+        <div class="movie__details"></div>
+        <div class="movie__comments commentk"></div>
+        <div class="movie__add-comment commentk">
+          <h3>Add a comment</h3>
+          <form action="#" id="form__comment">
+            <input type="text" name="inp__username" id="inp__username" class="input__field" placeholder="Your name"
+              required />
+            <br>
+            <textarea name="inp__comments" id="inp__comments" class="input__field" cols="30" rows="5"
+              placeholder="Your Comments" required></textarea>
+            <input type="submit" id="btn__submit" class="btn" value="COMMENT" />
+            <span class="form__message" id="form__message-com"></span>
+          </form>
+        </div>
+      </div>
+      <div class="popbtn">
+        <button type="button" id="closepop" class="closepop">X</button>
+      </div>
+    </div>
+  </div>
+
   <br>
   <footer class="footer">Created by Microverse under CC license ©</footer>
 </body>
